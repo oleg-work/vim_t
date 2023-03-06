@@ -29,7 +29,7 @@ function! s:SendSelectedToTermBufferId(...) range
 
   let s:saved_register = @@
   " copy selected text using marks
-  keepjumps normal! `<`>y
+  keepjumps normal! `<v`>y
   " delete new line character at the end
   let @@ = substitute(@@, '\n', '', '')
   " escape special characters
