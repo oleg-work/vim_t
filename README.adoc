@@ -1,28 +1,38 @@
 = T
 
-More convenient wrapper for frequently used vim's `:term_sendkeys` terminal function.
+A more convenient wrapper for Vim's frequently used `:term_sendkeys` terminal function.
 
-.Vanilla vim
+.vim
 [source,vim]
 ----
+" assuming `16` is indeed a terminal buffer
 :let term_buffer_id = 16
 :'<,'>y | call term_sendkeys(term_buffer_id,@")
 ----
 
-.T plugin shortcuts
+[NOTE]
+====
+Everytime you are specifing new terminal buffer id to work with it's remembered.
+In subsequent calls, you can omit the terminal buffer id.
+====
+
+.vim with T plugin shortcuts
 [source,vim]
 ----
-" m - multiple, each line is treated as separate command
-:'<,'>Tm 16
-" when buffer id is omitted, previous is used
-:'<,'>Tm
-
-" s - single, all lines are joined newline chars become
-" spaces
-:'<,'>Ts 16
-
 " t - terminal, write command in terminal mode
 :Tt 16 ls -la
-" send carriage return to terminal
+" Send <CR> (Enter) to the terminal. As a side effect, `16` is
+" remembered as the terminal buffer we are working with right now.
+:Tt 16
+" Now we can omit `16`. The following command is the same as
+" the previous one.
 :Tt
+
+" m - multiple, <CR> after each visually selected line
+:'<,'>Tm 16
+" When the buffer ID is omitted, the previous one is used.
+:'<,'>Tm
+
+" s - single, join all lines into one
+:'<,'>Ts 16
 ----
