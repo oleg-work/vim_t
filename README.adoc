@@ -36,3 +36,11 @@ In subsequent calls, you can omit the terminal buffer id.
 " s - single, join all lines into one
 :'<,'>Ts 16
 ----
+
+.you can also create remappings
+[source,vim]
+----
+nnoremap <leader>tt :Tt<CR>
+vnoremap <leader>ts :<C-u>Ts<CR>
+vnoremap <leader>tm :<C-u>Tm<CR>
+----
